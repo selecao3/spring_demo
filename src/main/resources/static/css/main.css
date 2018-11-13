@@ -1,0 +1,47 @@
+#title{
+    font-size: 54px;
+    font-weight: bold;
+}
+
+.text{
+    font-size: 34px;
+}
+#home{
+    width: 1000px;
+    margin-left: 180px;
+    margin-right: 200px;
+    margin-top: 50px;
+}
+
+
+.dtable{
+    display: table;  /* ブロックレベル要素をtableと同じように表示にする */
+
+    
+    word-break: break-all;
+}
+
+.dtable_c{
+    display: table-cell;
+    border: 2px;
+    padding: 10px;
+    width: 160px;
+}
+.dtable_text{
+    display: table-cell;
+    border: 2px;
+    padding-left: 50px;
+}
+.folder{
+    font-size: 24px;
+    padding: 0.5em 1em;
+    margin: 0.3em 0;
+    color: #5989cf;
+    background: #c6e4ff;
+    border-bottom: solid 6px #aac5de;
+    border-radius: 9px;
+}
+#plusimg{
+    margin-left: 950px;
+
+}
