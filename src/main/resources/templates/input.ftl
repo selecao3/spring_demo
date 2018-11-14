@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html>
 
 <head>
@@ -12,12 +13,16 @@
 <body>
     <div class="dtable">
         <div class="dtable_text">
-            <form method="POST" action="/post" th:object="${textF}">
-                <input type="text" th:field="*{title}">
-                <textarea type="text" th:field="*{text}" cols="30" rows="10">
-                        </textarea>
+        <@spring.bind "textF"/>
+
+            <form method="POST" action="/post">
+            title:
+            <@spring.formInput "textF.title/>
+            <@spring.formText "textF.text/>
+                <form:textarea path="text" cols="30" rows="10">
+                        aaa</form:textarea>
                 <input type="submit" value="送信">
-            </form>
+            </form:form>
 
 
         </div>

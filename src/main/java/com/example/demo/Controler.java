@@ -2,7 +2,10 @@ package com.example.demo;
 
 import java.io.IOException;
 
+import javax.validation.Valid;
+
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -42,9 +45,16 @@ public class Controler {
             return "result";
         }
     @RequestMapping(value = "/post", method = RequestMethod.POST)
-        public ModelAndView result(ModelAndView mav){
+        public ModelAndView results(@Valid TextForm textF, ModelAndView mav, BindingResult result){
+            if (result.hasErrors()) {
+                mav.addObject("text", "テキストなし");
+                mav.addObject("title", "titleなし");
+                mav.setViewName("result");
+                return mav;
+            }
+            mav.addObject("text", textF.getTitle());
+            mav.addObject("title", textF.getText());
             mav.setViewName("result");
-            mav.addObject("textF",new TextForm());
             return mav;
         }
     
