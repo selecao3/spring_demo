@@ -1,23 +1,18 @@
-#title{
+span#title{
     font-size: 54px;
     font-weight: bold;
 }
-
-.text{
+p.text{
     font-size: 34px;
 }
 #home{
-    width: 1000px;
-    margin-left: 180px;
-    margin-right: 200px;
+    width: 1440px;
+    margin-left: 20%;
+    margin-right: 20%;
     margin-top: 50px;
 }
-
-
 .dtable{
     display: table;  /* ブロックレベル要素をtableと同じように表示にする */
-
-    
     word-break: break-all;
 }
 
@@ -44,4 +39,26 @@
 #plusimg{
     margin-left: 950px;
 
+}
+textarea {
+  width: 600px;
+  height: 108px;
+  background: #eee;
+  border: 1px solid #bebebe;
+  font-size: 1em;
+}
+textarea:focus {
+  background: #edf4ff;
+  border: 1px solid #4881d9;
+}
+input[type="text"] {
+  width: 600px;
+  height: 36px;
+  background: #eee;
+  border: 1px solid #bebebe;
+  font-size: 12px;
+}
+input[type="text"]:focus {
+  background: #edf4ff;
+  border: 1px solid #4881d9;
 }

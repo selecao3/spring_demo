@@ -22,9 +22,6 @@
         </div>
         <div class="dtable_text">
             <span id="title">${title}</span>
-
-
-
             <p class="text">${text}</p>
         </div>
 
