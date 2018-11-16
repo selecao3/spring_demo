@@ -20,10 +20,10 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 public class Controler {
     String path = "src/main/resources/static/other/hoge.txt";
 
-    @ModelAttribute
-    TextForm setupform(){
-        return new TextForm();
-    }
+    @RequestMapping(value = "/", method = RequestMethod.GET)
+        public String index(){
+            return "index";
+        }
     @RequestMapping(value = "/page", method = RequestMethod.GET)
         public ModelAndView home(ModelAndView modelAndView) throws IOException {
             //modelAndView冗長。改善できそう
