@@ -22,6 +22,7 @@
         </div>
         <div class="dtable_text">
             <span id="title">${title}</span>
+            <hr>
             <p class="text">${text}</p>
         </div>
 

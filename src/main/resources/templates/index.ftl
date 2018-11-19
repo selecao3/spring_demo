@@ -8,6 +8,7 @@
     <link rel="stylesheet" type="text/css" href="/css/main.css">
     <link rel="stylesheet" type="text/css" href="\css\navigation.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="/javascript/main.js"></script>
 </head>
 <body>
 
@@ -28,10 +29,7 @@
         <span id="title">GET STARTED!!</span>
         <div>
             <div class="menu" id="menu1">
-                <br>aaaaaaaaaaaaaaaaaaaaaaa
-                <br>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-                <br>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-                <br>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+                <a href="page">pageへ</a>
             </div>
             <div class="menu" id="menu2">
                 <br>bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
@@ -40,25 +38,16 @@
                 <br>bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
                 <br>bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
             </div>
+            <div class="menu" id="menu3">
+                menu3
+            </div>
         </div>
     </div>
     
     </div>
     
     </div>
-    <script>
-        var befor_id = 0;
-        $(function () {
-            $('div.folder').click(function () {
-                var id = $(this).attr("id");
-                if (befor_id !== id) {
-                    $('#menu' + befor_id).hide();
-                }
-                $('#menu' + id).toggle();
-                befor_id = id;
-            });
-        });
-    </script>
+
     
     </body>
 </html>
