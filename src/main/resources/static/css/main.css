@@ -13,6 +13,12 @@ body {
      text-align:left;     /* 中身を左側表示に戻す */
      width:650px;         /* 幅を決定する */
     }
+a:link{
+    color: orange;
+}
+a:visited{
+    color: orange;
+}
 
 span#title {
     font-size: 54px;
@@ -21,11 +27,11 @@ span#title {
 
 p.text {
     font-size: 34px;
-    width: 700px;
+    width: 1000px;
 }
 
 #home {
-    width: 1040px;
+    width: 100%;
     /* margin-left: 20%;
     margin-right: 20%; */
     margin-top: 50px;
@@ -48,23 +54,30 @@ p.text {
 }
 
 .dtable_text {
-    display: table-cell;
+    display: block;
     border: 2px;
-    padding-left: 50px;
+    padding-left: 150px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%
 }
 
 .folder {
-    font-size: 24px;
+    font-size: 32px;
     padding: 0.5em 1em;
     margin: 0.3em 0;
     color: #5989cf;
     background: #c6e4ff;
     border-bottom: solid 6px #aac5de;
     border-radius: 9px;
+    width: 100%;
 }
 
 #plusimg {
-    margin-left: 950px;
+    /* margin-left: 950px; */
+    width: 100px;
+    margin-left: auto;
+    
 
 }
 
