@@ -27,7 +27,7 @@ span#title {
 
 p.text {
     font-size: 34px;
-    width: 1000px;
+    /* width: 1000px; */
 }
 
 #home {
@@ -44,6 +44,12 @@ p.text {
     display: table;
     /* ブロックレベル要素をtableと同じように表示にする */
     word-break: break-all;
+}
+.input-dtable {
+    display: inline-block;
+    width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .dtable_c {
@@ -82,28 +88,28 @@ p.text {
 }
 
 textarea {
-    width: 600px;
-    height: 108px;
-    background: #eee;
-    border: 1px solid #bebebe;
-    font-size: 1em;
+    width: 80%;
+    height: 700px;
+    background: white;
+    border: 3px solid #EEA34A;
+    font-size: 24px;
 }
 
 textarea:focus {
-    background: #edf4ff;
+    background: white;
     border: 1px solid #4881d9;
 }
 
 input[type="text"] {
-    width: 600px;
+    width: 80%;
     height: 36px;
-    background: #eee;
-    border: 1px solid #bebebe;
-    font-size: 12px;
+    background: white;
+    border: 3px solid #EEA34A;
+    font-size: 24px;
 }
 
 input[type="text"]:focus {
-    background: #edf4ff;
+    background: white;
     border: 1px solid #4881d9;
 }
 

@@ -23,32 +23,10 @@ public class Controler {
         public String index(){
             return "index";
         }
-    // @RequestMapping(value = "/page", method = RequestMethod.GET)
-    //     public ModelAndView home(ModelAndView modelAndView) throws IOException {
-    //         //modelAndView冗長。改善できそう
-    //         FileRead filereader = new FileRead();
-    //         String title = "title";
-    //         String text = filereader.readAll(path);
-    //         modelAndView.addObject("title", title);
-    //         modelAndView.addObject("text", text);
-    //         modelAndView.setViewName("page");
-    //         return modelAndView;
-    //     }
+
     @RequestMapping(value = "/page", method = RequestMethod.GET)
-        public ModelAndView home(ModelAndView modelAndView,
-            @Valid TextForm textF
-        ){
-            //modelAndView冗長。改善できそう
-            textF.setText("hage");
-            textF.setTitle("hoge");
-            String unko = textF.getText();
-            textF.getTitle();
-            System.out.println("unkoなう");
-            System.out.println(unko);
-            
-            modelAndView.addObject("textF", textF);
-            modelAndView.setViewName("page");
-            return modelAndView;
+        public String home(){
+            return "page";
         }
 
     @RequestMapping(value = "/edit", method = RequestMethod.GET)

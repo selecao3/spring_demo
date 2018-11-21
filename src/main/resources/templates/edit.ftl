@@ -1,4 +1,4 @@
-<#import "/spring.ftl" as spring/>
+<#import "/spring.ftl" as spring />
 
 <!DOCTYPE html>
 
@@ -13,22 +13,18 @@
 </head>
 
 <body>
-    <div class="dtable">
-        <div class="dtable_text">
-        <@spring.bind "textF"/>
+    <div class="input-dtable">
+        <@spring.bind "textF" />
 
-        <div class="dtable_text">
             <form method="POST" action="/post">
-            <span id="title">
-            <@spring.formInput "textF.title"/>
-            </span>
-            <p class="text">
-            <@spring.formTextarea "textF.text"/>
-            </p>
-            <input type="submit" value="送信">
+                <span id="title">
+                    <@spring.formInput "textF.title" />
+                </span>
+                <p class="text">
+                    <@spring.formTextarea "textF.text" />
+                </p>
+                <input type="submit" value="送信">
             </form>
-        </div>
-        </div>
     </div>
 </body>
 </html>

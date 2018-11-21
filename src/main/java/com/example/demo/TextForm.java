@@ -3,9 +3,11 @@ package com.example.demo;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import org.springframework.boot.autoconfigure.domain.EntityScan;
+
 //form機能について
+
 public class TextForm {
-    
 
     @NotNull
     @Size(min = 10)

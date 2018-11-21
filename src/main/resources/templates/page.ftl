@@ -73,24 +73,15 @@
                 <div class="folder" id="3">フォルダ3</div>
             </div>
             <div class="dtable_text">
-                    <!-- <span id="title">${title}</span>
-                    <hr>
-                    <p class="text">${text}</p> -->
-                    <#if (textF.title!"")=="" || (textF.text!"")=="">
-                        titleが挿入されていません.
-                        <br>textが挿入されていません.
-                        <#else>
-                            ${textF.title}
-                            <br>${textF.text}
-                    
-                    </#if>
-                    <a href="edit">編集</a>
-                    </div>
-                    
-                    </div>
-                    
-                    </div>
-                    
-                    
-                    </body>
+                ${textF.title}
+                <br>${textF.text}
+                <a href="edit">編集</a>
+            </div>
+            
+            </div>
+            
+            </div>
+            
+            
+            </body>
 </html>
