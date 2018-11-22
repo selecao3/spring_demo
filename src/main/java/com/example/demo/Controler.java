@@ -3,6 +3,7 @@ package com.example.demo;
 
 import javax.validation.Valid;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -23,9 +24,12 @@ import javax.inject.Inject;
 @Controller
 public class Controler {
     String path = "src/main/resources/static/other/hoge.txt";
+
+    @Autowired
     final InputedDataRepository inputedDataRepository;
 
     @Inject
+    
     public Controler(InputedDataRepository inputedDataRepository) {
         this.inputedDataRepository = inputedDataRepository;
     }
