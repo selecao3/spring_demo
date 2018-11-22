@@ -5,6 +5,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 
 @Repository
-public interface InputedDataRepository extends JpaRepository<InputedDatas,Integer> {
-    
+public interface InputedDataRepository extends JpaRepository<InputedDatas,Long> {
 }

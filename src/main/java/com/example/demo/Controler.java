@@ -12,8 +12,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-import com.example.demo.InputedDataRepository;
-
 import java.util.List;
 
 import javax.inject.Inject;
@@ -26,12 +24,11 @@ public class Controler {
     String path = "src/main/resources/static/other/hoge.txt";
 
     @Autowired
-    final InputedDataRepository inputedDataRepository;
+    final InputedDataService inputedDataService;
 
-    @Inject
-    
-    public Controler(InputedDataRepository inputedDataRepository) {
-        this.inputedDataRepository = inputedDataRepository;
+    @Autowired
+    public Controler() {
+        this.inputedDataService = new InputedDataService();
     }
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
@@ -47,19 +44,19 @@ public class Controler {
     @RequestMapping(value = "/DataPost", method = RequestMethod.POST)
     public ResponseEntity<InputedDatas> InputData() {
         InputedDatas InputData = new InputedDatas();
-        InputedDatas saved = inputedDataRepository.save(InputData);
+        InputedDatas saved = inputedDataService.save(InputData);
         // これがないとtextFオブジェクトは使えない。
         // 具体的に言うとtextF.title, textF.textに値を代入することができない
         return ResponseEntity.ok().body(saved);
     }
 
-    @RequestMapping(value = "/DataOutput", method = RequestMethod.GET)
-    public ModelAndView OutputData(ModelAndView model) {
-        List<InputedDatas> list = inputedDataRepository.findAll();
-        model.addObject("list", list);
-        model.setViewName("page");
-        return model;
-    }
+    // @RequestMapping(value = "/DataOutput", method = RequestMethod.GET)
+    // public ModelAndView OutputData(ModelAndView model) {
+    //     List<InputedDatas> list = inputedDataService;
+    //     model.addObject("list", list);
+    //     model.setViewName("page");
+    //     return model;
+    // }
 
     @RequestMapping(value = "/edit", method = RequestMethod.GET)
     public ModelAndView inputtext(ModelAndView mav) {
