@@ -21,79 +21,52 @@
 <body>
 
 
-<!-- Modal HTML embedded directly into document -->
+    <!-- Modal HTML embedded directly into document -->
 
-<div id="addFolder" class="modal">
-    <form action="/post/folder" method="post">
-        <p>
-            追加するフォルダ名:
-            <input type="text" name="folderName" style="width:250px;">
-        </p>
-        <input type="submit" value="OK">
-    </form>
-    <a href="#" rel="modal:close">Close</a>
-</div>
-
-<div id="addFile" class="modal">
-    <form action="post/folder" method="POST">
-        追加するフォルダを選択:
-        <select name="folderId">
-            <div th:each="obj : ${folderdata}">
-                <option th:value="${obj.folderName}">
-                    <span th:text="${obj.folderName}"></span>
-                </option>
-            </div>
-        </select>
-        <div>
-            追加するファイル名:
-            <input type="text" name="fileName" style="width:250px;">
-        </div>
-        <a href="edit">
+    <div id="addFolder" class="modal">
+        <form action="/post/folder" method="post">
+            <p>
+                追加するフォルダ名:
+                <input type="text" name="folderName" style="width:250px;">
+            </p>
             <input type="submit" value="OK">
-        </a>
-    </form>
-
-
-    <a href="#" rel="modal:close">Close</a>
-</div>
-
-
-<div id="home">
-    <div id="plusimg">
-        <a class="clickToolTip" href="#plus">
-            <img src="/css/plus.png" alt="追加">
-        </a>
-        <p id="plus" class="toolTip invisible">
-            <a href="#addFolder" rel="modal:open">フォルダを追加する</a>
-            <br><a href="#addFile" rel="modal:open">ファイルを追加する</a>
-        </p>
-
+        </form>
+        <a href="#" rel="modal:close">Close</a>
     </div>
 
-    <div class="dtable">
 
-        <div class="dtable_c">
-            <div class="folder" id="1" th:each="obj : ${folderdata}">
-                <span th:text="${obj.folderName}"></span>
-            </div>
+
+    <div id="home">
+        <div id="plusimg">
+            <a class="clickToolTip" href="#plus">
+                <img src="/css/plus.png" alt="追加">
+            </a>
+            <p id="plus" class="toolTip invisible">
+                <a href="#addFolder" rel="modal:open">フォルダを追加する</a>
+                <br><a href="edit">ファイルを追加する</a>
+            </p>
+
         </div>
 
-        <div class="dtable_text">
-            <div id="main-menu">
-                <span id="title">GET STARTED!!</span>
+        <div class="dtable">
+
+            <div class="dtable_c">
+                <div class="folder" id="1" th:each="obj : ${folderdata}">
+                    <span th:text="${obj.folderName}"></span>
+                </div>
             </div>
-            <div th:each="obj : ${filedata}">
-                <div hidden class="menu" id="menu1">
-                    <a th:href="@('page/'+${obj.id}}" th:text="${obj.fileName}"></a>
+
+            <div class="dtable_text">
+                <div id="main-menu">
+                    <span id="title">GET STARTED!!</span>
+                </div>
+                <div hidden id="menu1">
+                    <div th:each="obj : ${filedata}">
+                        <a th:href="@{page/{id}(id=${obj.id})}" th:text="${obj.title}"></a>
+                    </div>
                 </div>
             </div>
         </div>
-
     </div>
-
-</div>
-
-
-
 </body>
 </html>

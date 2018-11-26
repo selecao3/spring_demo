@@ -2,9 +2,6 @@ $(function () {
     $('div.folder').click(function () {
         var id = $(this).attr("id");
         var str = $("#menu" + id).html();
-        var str1 = $(".dtable_text").html();
-        console.log(str1);
-        console.log(str);
         $('#main-menu').html(str);
     })
 })

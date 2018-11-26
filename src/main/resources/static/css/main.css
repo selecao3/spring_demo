@@ -25,7 +25,7 @@ span#title {
     font-weight: bold;
 }
 
-p.text {
+span.text {
     font-size: 34px;
     /* width: 1000px; */
 }
@@ -114,4 +114,5 @@ input[type="text"]:focus {
 }
 
 .menu {
+    display: none;
 }

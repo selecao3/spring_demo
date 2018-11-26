@@ -31,26 +31,7 @@
         </form>
         <a href="#" rel="modal:close">Close</a>
     </div>
-    <div id="addFile" class="modal">
-        <form action="post/file" method="POST">
-            追加するフォルダを選択:
-        <select name="folder">
-            <div th:each="obj : ${data}">
-                <option th:value="${obj.folderName}">
-                    <span th:text="${obj.folderName}"></span>
-                </option>
-            </div>
-        </select>
-            <div>
-                追加するファイル名:
-                <input type="text" style="width:250px;">
-            </div>
-            <input type="submit" value="OK">
-        </form>
 
-
-        <a href="#" rel="modal:close">Close</a>
-    </div>
 
 
     <div id="home">
@@ -60,23 +41,28 @@
             </a>
             <p id="plus" class="toolTip invisible">
                 <a href="#addFolder" rel="modal:open">フォルダを追加する</a>
-                <br><a href="#addFile" rel="modal:open">ファイルを追加する</a>
+                <br><a href="/edit">ファイルを追加する</a>
             </p>
 
         </div>
 
         <div class="dtable">
-            <div class="dtable_c" th:each="obj : ${folderdata}">
-                <div class="folder" th:text="${obj.folderName}">
+            <div class="dtable_c">
+                <div class="folder" th:each="obj : ${folderdata}">
+                    <span th:text="${obj.folderName}"></span>
                 </div>
             </div>
 <div class="dtable_text">
-        <div th:each ="obj : ${filedata}">
-        <span th:text="${obj.title}"></span>
-        <p th:text="*{obj.text}"></p>
-        </div>
+<div th:each="obj : ${filedata}">
+    <span id="title" th:text="${obj.title}"></span>
+    <hr>
+    <div th:each="str, stat : ${obj.text.split('\r\n|\r|\n', -1)}">
+    <span class="text" th:text="${str}"></span>
+    <br th:if="${!stat.last}">
+    </div>
+</div>
 
-    <a href="edit">編集</a>
+<a href="edit">編集</a>
 </div>
 
 </div>

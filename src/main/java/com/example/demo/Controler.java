@@ -51,37 +51,36 @@ public class Controler {
         return "redirect:/";
     }
 
-    @RequestMapping(value = "/post/file", method = RequestMethod.POST)
-    public String InputFileData(@RequestParam("fileName") String filename) {
-        FolderMongo data = new FolderMongo(filename);
-        FolderRepo.save(data);
-        return "redirect:/";
-    }
 
     @RequestMapping(value = "/page/{id}", method = RequestMethod.GET)
     public ModelAndView home(ModelAndView mav, @PathVariable("id") String id) {
         List<MyDataMongo> list = MydataRepo.findById(id);
-        mav.addObject("data", list);
+        List<FolderMongo> folderlist = FolderRepo.findAll();
+        mav.addObject("filedata", list);
+        mav.addObject("folderdata", folderlist);
         mav.setViewName("page");
         return mav;
     }
 
     @RequestMapping(value = "/edit", method = RequestMethod.GET)
     public ModelAndView inputtext(ModelAndView mav) {
+        List<FolderMongo> folderlist = FolderRepo.findAll();
+        mav.addObject("folderdata",folderlist);
         mav.setViewName("edit");
-        // これがないとtextFオブジェクトは使えない。
-        // 具体的に言うとtextF.title, textF.textに値を代入することができない
         return mav;
     }
 
-    @RequestMapping(value = "/post/text", method = RequestMethod.POST)
-    public ModelAndView InputTextData(@RequestParam("title") String title, @RequestParam("text") String text,
+    @RequestMapping(value = "/post/file", method = RequestMethod.POST)
+    public ModelAndView InputTextData(
+        @RequestParam("filename") String filename,
+        @RequestParam("title") String title,
+        @RequestParam("text") String text,
             ModelAndView mav) {
-        MyDataMongo data = new MyDataMongo(title, text);
+        MyDataMongo data = new MyDataMongo(filename,title, text);
         MydataRepo.save(data);
         // これがないとtextFオブジェクトは使えない。
         // 具体的に言うとtextF.title, textF.textに値を代入することができない
-        return new ModelAndView("redirect:result");
+        return new ModelAndView("redirect:/");
     }
 
 

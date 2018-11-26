@@ -11,8 +11,16 @@
 </head>
 
 <body>
+
     <div class="input-dtable">
         <form method="POST" action="/post/file">
+        <select name="filename">
+            <div th:each="obj : ${folderdata}">
+                <option th:value="${obj.folderName}">
+                    <span th:text="${obj.folderName}"></span>
+                </option>
+            </div>
+        </select>
             <input type="text" name="title">
             <textarea name="text" id="text" cols="30" rows="10"></textarea>
             <input type="submit" value="送信">
