@@ -3,18 +3,23 @@ package com.example.demo;
 
 import javax.validation.Valid;
 
+import com.example.demo.MyDataMongo;
+import com.example.demo.MyDataMongoRepository;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import java.util.List;
+import java.util.Optional;
 
-import javax.inject.Inject;
 
 /**
  * Controler
@@ -24,62 +29,60 @@ public class Controler {
     String path = "src/main/resources/static/other/hoge.txt";
 
     @Autowired
-    final InputedDataService inputedDataService;
+    MyDataMongoRepository MydataRepo;
 
     @Autowired
-    public Controler() {
-        this.inputedDataService = new InputedDataService();
-    }
+    FolderMongoRepository FolderRepo;
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
-        public String index(){
-            return "index";
-        }
-
-    @RequestMapping(value = "/page", method = RequestMethod.GET)
-        public String home(){
-            return "page";
-        }
-    
-    @RequestMapping(value = "/DataPost", method = RequestMethod.POST)
-    public ResponseEntity<InputedDatas> InputData() {
-        InputedDatas InputData = new InputedDatas();
-        InputedDatas saved = inputedDataService.save(InputData);
-        // これがないとtextFオブジェクトは使えない。
-        // 具体的に言うとtextF.title, textF.textに値を代入することができない
-        return ResponseEntity.ok().body(saved);
+    public ModelAndView index(ModelAndView mav) {
+        List<FolderMongo> list = FolderRepo.findAll();
+        List<MyDataMongo> textlist= MydataRepo.findAll();
+        mav.addObject("folderdata",list);
+        mav.addObject("filedata",textlist);
+        mav.setViewName("index");
+        return mav;
     }
 
-    // @RequestMapping(value = "/DataOutput", method = RequestMethod.GET)
-    // public ModelAndView OutputData(ModelAndView model) {
-    //     List<InputedDatas> list = inputedDataService;
-    //     model.addObject("list", list);
-    //     model.setViewName("page");
-    //     return model;
-    // }
+    @RequestMapping(value = "/post/folder", method = RequestMethod.POST)
+    public String InputFolderData(@RequestParam("folderName") String folderName) {
+        FolderMongo data = new FolderMongo(folderName);
+        FolderRepo.save(data);
+        return "redirect:/";
+    }
+
+    @RequestMapping(value = "/post/file", method = RequestMethod.POST)
+    public String InputFileData(@RequestParam("fileName") String filename) {
+        FolderMongo data = new FolderMongo(filename);
+        FolderRepo.save(data);
+        return "redirect:/";
+    }
+
+    @RequestMapping(value = "/page/{id}", method = RequestMethod.GET)
+    public ModelAndView home(ModelAndView mav, @PathVariable("id") String id) {
+        List<MyDataMongo> list = MydataRepo.findById(id);
+        mav.addObject("data", list);
+        mav.setViewName("page");
+        return mav;
+    }
 
     @RequestMapping(value = "/edit", method = RequestMethod.GET)
     public ModelAndView inputtext(ModelAndView mav) {
         mav.setViewName("edit");
-        mav.addObject("textF", new TextForm());
         // これがないとtextFオブジェクトは使えない。
         // 具体的に言うとtextF.title, textF.textに値を代入することができない
         return mav;
     }
 
-    @RequestMapping(value = "/result", method = RequestMethod.GET)
-    public String result(Model model) {
-        return "result";
+    @RequestMapping(value = "/post/text", method = RequestMethod.POST)
+    public ModelAndView InputTextData(@RequestParam("title") String title, @RequestParam("text") String text,
+            ModelAndView mav) {
+        MyDataMongo data = new MyDataMongo(title, text);
+        MydataRepo.save(data);
+        // これがないとtextFオブジェクトは使えない。
+        // 具体的に言うとtextF.title, textF.textに値を代入することができない
+        return new ModelAndView("redirect:result");
     }
 
-    @RequestMapping(value = "/post", method = RequestMethod.POST)
-    public String results(RedirectAttributes ra, @Valid TextForm textF, BindingResult result) {
-        if (!result.hasErrors()) {
-            // エラーが無い時
-            ra.addFlashAttribute("noErrors", true);
-        }
-        ra.addFlashAttribute("textF", textF);
-        return "redirect:/page";
-    }
 
 }

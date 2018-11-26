@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <meta charset="utf-8" />
@@ -32,13 +32,15 @@
         <a href="#" rel="modal:close">Close</a>
     </div>
     <div id="addFile" class="modal">
-        <form action="./" method="POST">
+        <form action="post/file" method="POST">
             追加するフォルダを選択:
-            <select name=”month”>
-                <option value=”jan”>1月</option>
-                <option value=”feb”>2月</option>
-                <option value=”mar”>3月</option>
-            </select>
+        <select name="folder">
+            <div th:each="obj : ${data}">
+                <option th:value="${obj.folderName}">
+                    <span th:text="${obj.folderName}"></span>
+                </option>
+            </div>
+        </select>
             <div>
                 追加するファイル名:
                 <input type="text" style="width:250px;">
@@ -64,24 +66,23 @@
         </div>
 
         <div class="dtable">
-
-            <div class="dtable_c">
-                <div class="folder" id="1">
-                    フォルダ1
+            <div class="dtable_c" th:each="obj : ${folderdata}">
+                <div class="folder" th:text="${obj.folderName}">
                 </div>
-                <div class="folder" id="2">フォルダ2</div>
-                <div class="folder" id="3">フォルダ3</div>
             </div>
-            <div class="dtable_text">
-                ${textF.title}
-                <br>${textF.text}
-                <a href="edit">編集</a>
-            </div>
-            
-            </div>
-            
-            </div>
-            
-            
-            </body>
+<div class="dtable_text">
+        <div th:each ="obj : ${filedata}">
+        <span th:text="${obj.title}"></span>
+        <p th:text="*{obj.text}"></p>
+        </div>
+
+    <a href="edit">編集</a>
+</div>
+
+</div>
+
+</div>
+
+
+</body>
 </html>

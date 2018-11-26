@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>入力画面</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="/css/main.css">
+</head>
+
+<body>
+    <div class="input-dtable">
+        <form method="POST" action="/post/file">
+            <input type="text" name="title">
+            <textarea name="text" id="text" cols="30" rows="10"></textarea>
+            <input type="submit" value="送信">
+        </form>
+    </div>
+</body>
+</html>
