@@ -16,6 +16,8 @@
     <!-- jQuery Modal -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
 </head>
 
 <body>
@@ -51,22 +53,27 @@
         <div class="dtable">
 
             <div class="dtable_c">
-                <div class="folder" id="1" th:each="obj : ${folderdata}">
+                <div th:each="obj: ${folderdata}">
+                <div class="folder" th:id="${obj.folderName}">
                     <span th:text="${obj.folderName}"></span>
                 </div>
+
+                </div>
+
             </div>
 
             <div class="dtable_text">
                 <div id="main-menu">
                     <span id="title">GET STARTED!!</span>
+                    <p th:text=${message}></p>
                 </div>
-                <div hidden id="menu1">
-                    <div th:each="obj : ${filedata}">
+                <div th:each="obj : ${filedata}">
+                    <div hidden th:class="${obj.folderName}">
                         <a th:href="@{page/{id}(id=${obj.id})}" th:text="${obj.title}"></a>
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
-</body>
+            </div>
+            </div>
+            </body>
 </html>

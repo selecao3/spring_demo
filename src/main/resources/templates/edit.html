@@ -14,7 +14,7 @@
 
     <div class="input-dtable">
         <form method="POST" action="/post/file">
-        <select name="filename">
+        <select name="folderName">
             <div th:each="obj : ${folderdata}">
                 <option th:value="${obj.folderName}">
                     <span th:text="${obj.folderName}"></span>

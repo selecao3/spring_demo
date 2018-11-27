@@ -7,14 +7,14 @@ public class MyDataMongo {
     @Id
     private String id;
     
-    private String filename;
+    private String folderName;
     private String title;
     private String text;
     
 
-    public MyDataMongo(String filename,String title, String text) {
+    public MyDataMongo(String folderName,String title, String text) {
         super();
-        this.filename = filename;
+        this.folderName = folderName;
         this.title= title;
         this.text= text;
     }
@@ -24,15 +24,26 @@ public class MyDataMongo {
     }
 
 
-    public String getFileName(){
-        return filename;
+	public void setFolderName(String folderName) {
+        this.folderName = folderName;
+	}
+    public String getFolderName(){
+        return folderName;
     }
+	public void setTitle(String title) {
+        this.title = title;
+	}
     public String getTitle(){
         return title;
     }
+	public void setText(String text) {
+        this.text = text;
+	}
     public String getText(){
         return text;
     }
+
+
 
 
 }

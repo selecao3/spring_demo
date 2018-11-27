@@ -1,7 +1,7 @@
 $(function () {
     $('div.folder').click(function () {
         var id = $(this).attr("id");
-        var str = $("#menu" + id).html();
+        var str = $("div." + id).html();
         $('#main-menu').html(str);
     })
 })

@@ -26,7 +26,7 @@ import java.util.Optional;
  */
 @Controller
 public class Controler {
-    String path = "src/main/resources/static/other/hoge.txt";
+    String message;
 
     @Autowired
     MyDataMongoRepository MydataRepo;
@@ -40,15 +40,50 @@ public class Controler {
         List<MyDataMongo> textlist= MydataRepo.findAll();
         mav.addObject("folderdata",list);
         mav.addObject("filedata",textlist);
+        mav.addObject("message", message);
         mav.setViewName("index");
         return mav;
     }
 
     @RequestMapping(value = "/post/folder", method = RequestMethod.POST)
-    public String InputFolderData(@RequestParam("folderName") String folderName) {
-        FolderMongo data = new FolderMongo(folderName);
-        FolderRepo.save(data);
-        return "redirect:/";
+    public ModelAndView InputFolderData(ModelAndView mav, @RequestParam("folderName") String folderName) {
+        if (FolderRepo.existsByFolderName(folderName)) {
+            message = "ダブっている";
+        }else if (folderName == "") {
+            message = "文字が入力されていない";
+        }else{
+            FolderMongo data = new FolderMongo(folderName);
+            FolderRepo.save(data);
+            message = "ダブっていない";
+        }
+        mav.setViewName("redirect:/");
+        return mav;
+    }
+
+    @RequestMapping(value = "/post/file", method = RequestMethod.POST)
+    public ModelAndView InputTextData(@RequestParam("folderName") String folderName,
+            @RequestParam("title") String title, @RequestParam("text") String text, ModelAndView mav) {
+
+        MyDataMongo data = new MyDataMongo(folderName, title, text);
+        MydataRepo.save(data);
+        // これがないとtextFオブジェクトは使えない。
+        // 具体的に言うとtextF.title, textF.textに値を代入することができない
+        return new ModelAndView("redirect:/");
+    }
+
+    @RequestMapping(value = "/post/{id}/edit", method = RequestMethod.POST)
+    public ModelAndView UpdateTextData(
+        @RequestParam("folderName") String folderName,
+        @RequestParam("title") String title,
+        @RequestParam("text") String text,
+        ModelAndView mav) {
+
+        MyDataMongo data = new MyDataMongo(folderName, title, text);
+        MydataRepo.save(data);
+
+        // これがないとtextFオブジェクトは使えない。
+        // 具体的に言うとtextF.title, textF.textに値を代入することができない
+        return new ModelAndView("redirect:/");
     }
 
 
@@ -65,23 +100,11 @@ public class Controler {
     @RequestMapping(value = "/edit", method = RequestMethod.GET)
     public ModelAndView inputtext(ModelAndView mav) {
         List<FolderMongo> folderlist = FolderRepo.findAll();
-        mav.addObject("folderdata",folderlist);
+        mav.addObject("folderdata", folderlist);
         mav.setViewName("edit");
         return mav;
     }
 
-    @RequestMapping(value = "/post/file", method = RequestMethod.POST)
-    public ModelAndView InputTextData(
-        @RequestParam("filename") String filename,
-        @RequestParam("title") String title,
-        @RequestParam("text") String text,
-            ModelAndView mav) {
-        MyDataMongo data = new MyDataMongo(filename,title, text);
-        MydataRepo.save(data);
-        // これがないとtextFオブジェクトは使えない。
-        // 具体的に言うとtextF.title, textF.textに値を代入することができない
-        return new ModelAndView("redirect:/");
-    }
 
 
 }

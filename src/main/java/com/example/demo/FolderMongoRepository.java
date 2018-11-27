@@ -13,5 +13,6 @@ public interface FolderMongoRepository extends MongoRepository<FolderMongo, Long
     //つまりMongoRepositoryインターフェイスに記載されているメソッドが使える状態になっているということ。
     //オリジナルのメソッドを作りたかったらここに書けば良い。
     List<MyDataMongo> findById(String id);
+    Boolean existsByFolderName(String folderName);
 
 }
