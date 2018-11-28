@@ -45,7 +45,7 @@
             </a>
             <p id="plus" class="toolTip invisible">
                 <a href="#addFolder" rel="modal:open">フォルダを追加する</a>
-                <br><a href="edit">ファイルを追加する</a>
+                <br><a href="/edit/newFile">ファイルを追加する</a>
             </p>
 
         </div>
@@ -63,8 +63,9 @@
             </div>
 
             <div class="dtable_text">
-                <div id="main-menu">
                     <span id="title">GET STARTED!!</span>
+                <div id="main-menu">
+                    
                     <p th:text=${message}></p>
                 </div>
                 <div th:each="obj : ${filedata}">

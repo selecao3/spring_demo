@@ -1,8 +1,19 @@
+var before_id;
+
 $(function () {
     $('div.folder').click(function () {
         var id = $(this).attr("id");
-        var str = $("div." + id).html();
-        $('#main-menu').html(str);
+        if (before_id === id) {
+            $('#main-menu').html("");
+            id = 0;
+        } else {
+            $('#main-menu').html("");
+            $("div." + id).each(function () {
+                str = $(this).html();
+                $('#main-menu').append('<br>' + str);
+            })
+        }
+        before_id = id;
     })
 })
 
@@ -24,8 +35,8 @@ $(function () {
         $('p' + targetNote).removeClass('invisible');
     });
 
-  // 表示されたツールチップを隠す処理（マウスクリックで全て隠す）
-//   $('html').mousedown(function(){
-//     $('p.toolTip').addClass('invisible');
-//   });
+    // 表示されたツールチップを隠す処理（マウスクリックで全て隠す）
+    //   $('html').mousedown(function(){
+    //     $('p.toolTip').addClass('invisible');
+    //   });
 });

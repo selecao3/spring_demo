@@ -13,18 +13,20 @@
 <body>
 
     <div class="input-dtable">
-        <form method="POST" action="/post/file">
-        <select name="folderName">
-            <div th:each="obj : ${folderdata}">
+        
+        <form method="POST" th:action="@{/post/{id}(id=${targetID})}">
+            <select name="folderName">
+    <div th:each="obj : ${folderdata}">
                 <option th:value="${obj.folderName}">
                     <span th:text="${obj.folderName}"></span>
                 </option>
-            </div>
-        </select>
-            <input type="text" name="title">
-            <textarea name="text" id="text" cols="30" rows="10"></textarea>
-            <input type="submit" value="送信">
-        </form>
     </div>
-</body>
+            </select>
+            
+    <input type="text" name="title">
+    <textarea name="text" id="text" cols="30" rows="10"></textarea>
+    <input type="submit" value="送信">
+    </form>
+    </div>
+    </body>
 </html>

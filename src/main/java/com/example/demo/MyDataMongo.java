@@ -11,6 +11,8 @@ public class MyDataMongo {
     private String title;
     private String text;
     
+    public MyDataMongo() {
+    }
 
     public MyDataMongo(String folderName,String title, String text) {
         super();
@@ -18,6 +20,7 @@ public class MyDataMongo {
         this.title= title;
         this.text= text;
     }
+
 
     public String getId() {
         return id;

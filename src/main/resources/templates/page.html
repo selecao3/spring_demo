@@ -53,16 +53,13 @@
                 </div>
             </div>
 <div class="dtable_text">
-<div th:each="obj : ${filedata}">
-    <span id="title" th:text="${obj.title}"></span>
+    <span id="title" th:text="${data.title}"></span>
     <hr>
-    <div th:each="str, stat : ${obj.text.split('\r\n|\r|\n', -1)}">
-    <span class="text" th:text="${str}"></span>
-    <br th:if="${!stat.last}">
+    <div th:each="str, stat : ${data.text.split('\r\n|\r|\n', -1)}">
+        <span class="text" th:text="${str}"></span>
+        <br th:if="${!stat.last}">
     </div>
-</div>
-
-<a href="edit">編集</a>
+    <a th:href="@{/edit/{id}(id=${data.id})}">編集</a>
 </div>
 
 </div>
