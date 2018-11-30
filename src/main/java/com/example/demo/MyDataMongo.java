@@ -21,12 +21,15 @@ public class MyDataMongo {
         this.text= text;
     }
 
+	public void setAll(String folderName,String title,String text) {
+        this.folderName = folderName;
+        this.title= title;
+        this.text= text;
+	}
 
     public String getId() {
         return id;
     }
-
-
 	public void setFolderName(String folderName) {
         this.folderName = folderName;
 	}

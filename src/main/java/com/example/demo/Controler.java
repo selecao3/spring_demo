@@ -80,7 +80,9 @@ public class Controler {
         ModelAndView mav
     ) {
         List<FolderMongo> folderlist = FolderRepo.findAll();
+        MyDataMongo filedata = MydataRepo.findById(id);
         mav.addObject("folderdata", folderlist);
+        mav.addObject("filedata", filedata);
         mav.addObject("targetID",id);
         mav.setViewName("edit");
         return mav;
@@ -95,9 +97,10 @@ public class Controler {
         MyDataMongo data;
         if (MydataRepo.existsById(id)) {
             data = MydataRepo.findById(id);
-            data.setFolderName(folderName);
-            data.setTitle(title);
-            data.setText(text);
+            data.setAll(folderName, title, text);
+            // data.setFolderName(folderName);
+            // data.setTitle(title);
+            // data.setText(text);
         }else{
             data = new MyDataMongo(folderName, title, text);
         }

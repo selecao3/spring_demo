@@ -16,9 +16,9 @@ body {
 a:link{
     color: orange;
 }
-a:visited{
+/* a:visited{
     color: orange;
-}
+} */
 
 span#title {
     font-size: 54px;
@@ -77,6 +77,11 @@ span.text {
     border-bottom: solid 6px #aac5de;
     border-radius: 9px;
     width: 100%;
+}
+.folderLink{
+    color: #5989cf;
+    text-decoration: none;
+
 }
 
 #plusimg {
