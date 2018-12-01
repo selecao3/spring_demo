@@ -6,12 +6,15 @@ $(function () {
         if (before_id === id) {
             $('#main-menu').html("");
             id = 0;
+	        $("ul#main-menu").removeClass("fileList");
         } else {
             $('#main-menu').html("");
             $("div." + id).each(function () {
                 str = $(this).html();
-                $('#main-menu').append('<br>' + str);
+                $('#main-menu').append(str);
             })
+            console.log("addClass in folder");
+	        $("ul#main-menu").addClass("fileList");
         }
         before_id = id;
     })
@@ -39,4 +42,12 @@ $(function () {
     //   $('html').mousedown(function(){
     //     $('p.toolTip').addClass('invisible');
     //   });
+});
+
+$(function(){
+    console.log("addClass");
+    var result = $("ul#main-menu").find("li");
+    console.log(result);
+    console.log(result[0]);
+	$("ul#main-menu li").addClass("fileList");
 });

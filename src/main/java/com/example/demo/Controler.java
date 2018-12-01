@@ -48,7 +48,6 @@ public class Controler {
         }else{
             FolderMongo data = new FolderMongo(folderName);
             FolderRepo.save(data);
-            message = "ダブっていない";
         }
         mav.setViewName("redirect:/");
         return mav;

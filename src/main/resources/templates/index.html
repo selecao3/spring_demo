@@ -63,16 +63,17 @@
             </div>
 
             <div class="dtable_text">
-                    <span id="title">GET STARTED!!</span>
-                <div id="main-menu">
-                    
-                    <p th:text=${message}></p>
-                </div>
-                <div th:each="obj : ${filedata}">
-                    <div hidden th:class="${obj.folderName}">
+            <span id="title">GET STARTED!!</span>
+            <ul id="main-menu">
+                <!-- <p th:text=${message}></p> -->
+            </ul>
+            <div th:each="obj : ${filedata}">
+                <div hidden th:class="${obj.folderName}">
+                    <li>
                         <a th:href="@{page/{id}(id=${obj.id})}" th:text="${obj.title}"></a>
-                    </div>
+                    </li>
                 </div>
+            </div>
             </div>
             </div>
             </div>
