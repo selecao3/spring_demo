@@ -7,6 +7,7 @@
     <title>index</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="/css/main.css">
+    <link rel="stylesheet" type="text/css" href="/css/header.css">
     <link rel="stylesheet" type="text/css" href="\css\navigation.css">
     <link rel="stylesheet" type="text/css" href="\css\tooltip.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -18,64 +19,91 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
+    <style>
+        h1{
+            text-align: left;
+        }
+    </style>
 </head>
 
 <body>
-
-
-    <!-- Modal HTML embedded directly into document -->
-
-    <div id="addFolder" class="modal">
-        <form action="/post/folder" method="post">
-            <p>
-                追加するフォルダ名:
-                <input type="text" name="folderName" style="width:250px;">
-            </p>
-            <input type="submit" value="OK">
-        </form>
-        <a href="#" rel="modal:close">Close</a>
-    </div>
-
-
-
-    <div id="home">
-        <div id="plusimg">
-            <a class="clickToolTip" href="#plus">
-                <img src="/css/plus.png" alt="追加">
-            </a>
-            <p id="plus" class="toolTip invisible">
-                <a href="#addFolder" rel="modal:open">フォルダを追加する</a>
-                <br><a href="/edit/newFile">ファイルを追加する</a>
-            </p>
-
+    <header>
+        <div id="main">
+            <h1>サポート窓口</h1>
+            <nav>
+                　<ul>
+                    　　<li class=”current”><a href="/">
+                        <img src="\css\home.png" alt="">
+                    </a></li>
+                    　　<li><a href="/">
+                        <img src="\css\list.png" alt="">
+                    </a></li>
+                    　　<li><a href="/">記事の投稿</a></li>
+                    　</ul>
+            </nav>
+    
         </div>
-
-        <div class="dtable">
-
-            <div class="dtable_c">
-                <div th:each="obj: ${folderdata}">
-                <div class="folder" th:id="${obj.folderName}">
-                    <span th:text="${obj.folderName}"></span>
+    
+    </header>
+    
+    <div id="main">
+        <!-- Modal HTML embedded directly into document -->
+    
+        <div id="addFolder" class="modal">
+            <form action="/post/folder" method="post">
+                <p>
+                    追加するフォルダ名:
+                    <input type="text" name="folderName" style="width:250px;">
+                </p>
+                <input type="submit" value="OK">
+            </form>
+            <a href="#" rel="modal:close">Close</a>
+        </div>
+    
+    
+    
+        <div id="home">
+            <div id="plusimg">
+                <a class="clickToolTip" href="#plus">
+                    <img src="/css/plus.png" alt="追加">
+                </a>
+                <p id="plus" class="toolTip invisible">
+                    <a href="#addFolder" rel="modal:open">フォルダを追加する</a>
+                    <br><a href="/edit/newFile">ファイルを追加する</a>
+                </p>
+    
+            </div>
+    
+            <div class="dtable">
+    
+                <div class="dtable_c">
+                    <div th:each="obj: ${folderdata}">
+                        <div class="folder" th:id="${obj.folderName}">
+                            <span th:text="${obj.folderName}"></span>
+                        </div>
+    
+                    </div>
+    
                 </div>
-
-                </div>
-
-            </div>
-
-            <div class="dtable_text">
-            <span id="title">GET STARTED!!</span>
-            <ul id="main-menu">
-                <!-- <p th:text=${message}></p> -->
-            </ul>
-            <div th:each="obj : ${filedata}">
-                <div hidden th:class="${obj.folderName}">
-                    <li>
-                        <a th:href="@{page/{id}(id=${obj.id})}" th:text="${obj.title}"></a>
-                    </li>
+    
+                <div class="dtable_text">
+                    <span id="title">GET STARTED!!</span>
+                    <ul id="main-menu">
+                        <!-- <p th:text=${message}></p> -->
+                    </ul>
+                    <div th:each="obj : ${filedata}">
+                        <div hidden th:class="${obj.folderName}">
+                            <li>
+                                <a th:href="@{page/{id}(id=${obj.id})}" th:text="${obj.title}"></a>
+                            </li>
+                        </div>
+                    </div>
                 </div>
             </div>
-            </div>
-            </div>
-            </div>
-            </body>
+        </div>
+    
+    </div>
+    
+    
+    </body>
 </html>

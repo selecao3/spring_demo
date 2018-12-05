@@ -1,0 +1,34 @@
+header {
+	height: 100px; /*ヘッダーの高さ*/
+	width: 100%; /*ヘッダーの横幅*/
+	background-color: #47B39D; /*ヘッダーの背景色*/
+	color: white; /*ヘッダーの文字の色*/
+}
+nav{
+text-align: center;
+}
+nav ul{
+margin: 0 ;
+padding: 0 ;
+}
+nav li{
+list-style: none;
+display: inline-block;
+width: 10%;
+min-width: 90px;
+}
+nav li:not(:last-child){
+border-right:2px solid #ddd;
+}
+nav a{
+text-decoration: none;
+color: #333;
+}
+nav a.current{
+color: #00B0F0;
+border-bottom:2px solid #00B0F0;
+}
+nav a:hover{
+color:#F7CB4D;
+border-bottom:2px solid #F7CB4D;
+}
